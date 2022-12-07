@@ -53,4 +53,4 @@ aList = extracted_status
 jsonStr = json.dumps(aList, ensure_ascii=False, indent=2)
 print(jsonStr)
 with open("extracted_status.json", "w") as outfile:
-    outfile.write('{''"Linhas": ['+jsonStr+'],'+'"Horario":'+jsonStrb+'}')
+    outfile.write('{\n''"Linhas": [\n'+jsonStr+'\n],\n'+'"Horario":'+jsonStrb+'\n}')
