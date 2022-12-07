@@ -6,6 +6,13 @@ Neste projeto utilizaremos um Web Scrapper escrito em python com [Beaultiful Sou
 ## Preparando o ambiente de trabalho
 Para darmos início serão necessárias as seguintes ferramentas:
 <!-- ![](src/vscode_modulos.png) -->
+#### npm
+Tenha o npm instalado para fazermos o ambiente de virtualização
+[Instalação npm](https://docs.npmjs.com/cli/v6/commands/npm-install)Instalação npm
+#### Azure functions core tools
+Instale o azure functions core tools
+```npm install -g azure-functions-core-tools@4 --unsafe-perm true```
+
 #### Azure Cli
 Para instalação do azure cli, segue [documentação](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) para instalação em todos os sistemas operacionais
 #### Módulos VsCode:
