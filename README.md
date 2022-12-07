@@ -172,7 +172,7 @@ azure-functions
 requests==2.28.1
 bs4
 ```
-Agora estamos prontos para fazer a primeira implantação
+Agora estamos prontos para fazer a implantação do backend
 
 ```
 func azure functionapp publish api-metro-sp-function --build remote
