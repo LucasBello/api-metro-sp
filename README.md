@@ -8,7 +8,7 @@ Para darmos início serão necessárias as seguintes ferramentas:
 <!-- ![](src/vscode_modulos.png) -->
 #### npm
 Tenha o npm instalado para fazermos o ambiente de virtualização
-[Instalação npm](https://docs.npmjs.com/cli/v6/commands/npm-install)Instalação npm
+[Instalação npm](https://docs.npmjs.com/cli/v6/commands/npm-install)
 #### Azure functions core tools
 Instale o azure functions core tools
 ```npm install -g azure-functions-core-tools@4 --unsafe-perm true```
