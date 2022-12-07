@@ -1,0 +1,145 @@
+import logging
+import os
+import requests
+import time
+import datetime
+import json
+
+
+import json
+
+
+with open('extracted_status.json') as json_file:
+    data = json.load(json_file)
+
+#ViaQuatro
+amarela=data['Linhas'][0]['amarela']
+#ViaMobilidade
+lilas=data['Linhas'][0]['lilás']
+diamante=data['Linhas'][0]['diamante']
+esmeralda=data['Linhas'][0]['esmeralda']
+#Metro de Sao Paulo
+azul=data['Linhas'][0]['azul']
+verde=data['Linhas'][0]['verde']
+vermelha=data['Linhas'][0]['vermelha']
+prata=data['Linhas'][0]['prata']
+#CPTM
+rubi=data['Linhas'][0]['rubi']
+turquesa=data['Linhas'][0]['turquesa']
+coral=data['Linhas'][0]['coral']
+safira=data['Linhas'][0]['safira']
+jade=data['Linhas'][0]['jade']
+#Horario
+horario=data['Horario'][0]
+
+
+
+
+file_html = open("Site/index.html", "w")
+# Adding the input data to the HTML file
+file_html.write('''<style type="text/css">
+.tg  {border:none;border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-d95z{font-size:x-large;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-6565{background-color:#ffffff;border-color:inherit;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-or33{background-color:#FFCCC9;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-4l1c{background-color:#38FFF8;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-2eyl{background-color:#D9D9D9;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-g2o5{background-color:#38FFF8;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-k6u7{background-color:#CBCEFB;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-dsuk{background-color:#EFEFEF;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-vrvj{background-color:#efefef;border-color:inherit;font-size:large;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-5t7v{font-size:medium;font-weight:bold;text-align:right;vertical-align:top}
+.tg .tg-x42o{font-size:medium;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-brau{background-color:#EFEFEF;font-size:large;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-mavf{background-color:#fffe65;border-color:inherit;font-family:serif !important;font-size:medium;text-align:center;
+  vertical-align:top}
+.tg .tg-3oww{background-color:#fffe65;border-color:inherit;font-family:serif !important;font-size:medium;text-align:center;
+  vertical-align:top}
+.tg .tg-lmca{background-color:#CBCEFB;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-vpoi{background-color:#FD6864;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-aaah{background-color:#FD6864;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-qpvq{background-color:#ffffff;border-color:inherit;color:#9b9b9b;font-size:medium;text-align:left;vertical-align:top}
+.tg .tg-906w{background-color:#D9D9D9;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-zx6z{background-color:#67FD9A;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-wv8w{background-color:#67FD9A;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-kjp2{background-color:#329A9D;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-zqxx{background-color:#329A9D;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-mam8{background-color:#ffffff;border-color:inherit;color:#000000;font-size:medium;font-weight:bold;text-align:center;
+  vertical-align:top}
+.tg .tg-1xak{background-color:#72EAE6;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-pvbj{background-color:#72EAE6;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-rkvu{background-color:#FFCCC9;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-w4pb{background-color:#FE996B;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-vmi4{background-color:#FE996B;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-wngn{background-color:#EFEFEF;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-qi1u{background-color:#3166FF;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-tzsp{background-color:#3166FF;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-3mnj{background-color:#ffffff;border-color:inherit;color:#000000;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-iwsi{background-color:#32CB00;font-size:medium;text-align:center;vertical-align:top}
+.tg .tg-2bq1{background-color:#32CB00;font-size:medium;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-d95z" colspan="8">API DE STATUS DE OPERACAO DE TRENS E METROS DA CIDADE DE SAO PAULO<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-5t7v" colspan="4">HORARIO<br></td>
+    <td class="tg-x42o" colspan="4">'''+horario+'''</td>
+  </tr>
+  <tr>
+    <td class="tg-vrvj" colspan="2">ViaQuatro</td>
+    <td class="tg-brau" colspan="2">ViaMobilidade</td>
+    <td class="tg-brau" colspan="2">Metro de Sao Paulo</td>
+    <td class="tg-brau" colspan="2">CPTM</td>
+  </tr>
+  <tr>
+    <td class="tg-mavf">4 - Amarela</td>
+    <td class="tg-3oww">'''+amarela+'''</td>
+    <td class="tg-k6u7">5 - Lilas</td>
+    <td class="tg-lmca">'''+lilas+'''</td>
+    <td class="tg-g2o5">1 - Azul</td>
+    <td class="tg-4l1c">'''+azul+'''</td>
+    <td class="tg-vpoi">7 - Rubi</td>
+    <td class="tg-aaah">'''+rubi+'''</td>
+  </tr>
+  <tr>
+    <td class="tg-qpvq" colspan="2"></td>
+    <td class="tg-2eyl">8 - Diamante</td>
+    <td class="tg-906w">'''+diamante+'''</td>
+    <td class="tg-zx6z">2 - Verde</td>
+    <td class="tg-wv8w">'''+verde+'''</td>
+    <td class="tg-kjp2">10 - Turquesa</td>
+    <td class="tg-zqxx">'''+turquesa+'''</td>
+  </tr>
+  <tr>
+    <td class="tg-mam8" colspan="2"></td>
+    <td class="tg-1xak">9 - Esmeralda<br></td>
+    <td class="tg-pvbj">'''+esmeralda+'''</td>
+    <td class="tg-rkvu">3 - Vermelha</td>
+    <td class="tg-or33">'''+vermelha+'''</td>
+    <td class="tg-w4pb">11 - Coral</td>
+    <td class="tg-vmi4">'''+coral+'''</td>
+  </tr>
+  <tr>
+    <td class="tg-6565" colspan="4"></td>
+    <td class="tg-wngn">15 - Prata</td>
+    <td class="tg-dsuk">'''+prata+'''</td>
+    <td class="tg-qi1u">12 - Safira</td>
+    <td class="tg-tzsp">'''+safira+'''</td>
+  </tr>
+  <tr>
+    <td class="tg-3mnj" colspan="6"></td>
+    <td class="tg-iwsi">13 - Jade</td>
+    <td class="tg-2bq1">'''+jade+'''</td>
+  </tr>
+</tbody>
+</table>''')
+# Saving the data into the HTML file
+file_html.close()
