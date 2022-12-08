@@ -30,7 +30,7 @@ $ mkdir funcoes && code funcoes
 ```
 ## Preparando o Azure
 
-<img src="src/azure_cli.png" alt="drawing" style="width:50px;"/> Autenticar uma sessão do Azure pelo Azure Cli
+<!-- <img src="src/azure_cli.png" alt="drawing" style="width:50px;"/> -->Autenticar uma sessão do Azure pelo Azure Cli
 ```bash
 az login
 ```
@@ -62,15 +62,15 @@ Agora vamos começar a criação dos recursos do Azure Functions
 
 > **_NOTA:_** Esta etapa pode ser realizada com a criação de um script de execução automático ou sendo executado linha a linha para melhor entendimento.
 
-<img src="src/resource_group.png" alt="drawing" style="width:20px;"/> Criar resource group
+<!--<img src="src/resource_group.png" alt="drawing" style="width:20px;"/> -->Criar resource group
 ```
 az group create --name api-metro-sp --location eastus
 ```
-<img src="src/storage_account.png" alt="drawing" style="width:20px;"/> Criar storage
+<!--<img src="src/storage_account.png" alt="drawing" style="width:20px;"/> -->Criar storage
 ```
 az storage account create --name apimetrospstorage --location eastus --resource-group api-metro-sp --sku Standard_LRS
 ```
-<img src="src/functions.png" alt="drawing" style="width:30px;"/> Criar FunctionApp
+<!--<img src="src/functions.png" alt="drawing" style="width:30px;"/> -->Criar FunctionApp
 ```
 az functionapp create --name api-metro-sp-function --storage-account apimetrospstorage --consumption-plan-location eastus --resource-group api-metro-sp --functions-version 4
 ```
