@@ -1,7 +1,10 @@
 
 # Capturando e tratando informações sobre a malha metroviária de São Paulo
 
-Neste projeto utilizaremos um Web Scrapper escrito em python com [Beaultiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) para localizar na página da [Via Quatro](https://www.viaquatro.com.br/) as informações sobre as linhas metroviárias e obter seus status de funcionamento, alimentando um arquivo json em um HTTP REQUEST que servirá de base de dados para um frontend. 
+Neste projeto utilizaremos um Web Scrapper escrito em python com [Beaultiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) para localizar na página da [Via Quatro](https://www.viaquatro.com.br/) as informações sobre as linhas metroviárias e obter seus status de funcionamento, alimentando um arquivo json em um HTTP REQUEST que servirá de base de dados para um frontend.
+<br><br>Arquitetura do projeto<br>
+<img src="https://i.imgur.com/jjZPIVw.jpg" alt="Paris" class="center" width="600">
+
 
 ## Preparando o ambiente de trabalho
 Para darmos início serão necessárias as seguintes ferramentas:
